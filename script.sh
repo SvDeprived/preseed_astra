@@ -22,7 +22,6 @@ echo "Источники успешно добавлены."
 echo "Обновление списка пакетов..."
 apt-get update
 
-
 systemctl stop ntp
 
 ntpd -gq
@@ -30,6 +29,10 @@ ntpd -gq
 systemctl start ntp
 
 hwclock -u -w
+
+cd etc
+
+tar -xvf /etc/largocodec-4.0.0-x86_64-all.tgz 
 
 set -e
 
