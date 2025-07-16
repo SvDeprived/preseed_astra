@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Проверка, запущен ли скрипт от имени root
+
 if [[ "$EUID" -ne 0 ]]; then
   echo "Пожалуйста, запустите скрипт с правами root (например, с помощью sudo)"
   exit 1
@@ -21,6 +22,14 @@ echo "Источники успешно добавлены."
 echo "Обновление списка пакетов..."
 apt-get update
 
+
+systemctl stop ntp
+
+ntpd -gq
+
+systemctl start ntp
+
+hwclock -u -w
 
 set -e
 
@@ -213,8 +222,3 @@ else
 	echo "Reboot the system to complete the installation."
 fi
 
-systemctl stop ntp
-ntpd -gq
-systemctl start ntp
-hwclock -u -w
-reboot
