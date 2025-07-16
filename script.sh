@@ -217,6 +217,4 @@ systemctl stop ntp
 ntpd -gq
 systemctl start ntp
 hwclock -u -w
-rm -f /etc/systemd/system/multi-user.target.wants/updatet.service
-systemctl daemon-reload
 reboot
